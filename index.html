@@ -915,14 +915,37 @@ footer{
   box-shadow:0 0 12px rgba(212,181,160,.6);
 }
 
-/* ── CUSTOM CURSOR ───────────────────────────── */
-const dot = document.getElementById('cursorDot');
+/* ─── CUSTOM CURSOR ──────────────────────── */
+const dot  = document.getElementById('cursorDot');
 const ring = document.getElementById('cursorRing');
+
 let mx = innerWidth/2, my = innerHeight/2;
 let rx = mx, ry = my;
+
+/* IMPORTANTE: manter esta variável porque outros efeitos do site usam ela */
 const supportsHover = matchMedia('(hover:hover) and (pointer:fine)').matches;
 
-if (supportsHover) {
+/*
+  Desativa apenas o cursor personalizado.
+  O cursor normal do navegador continua funcionando.
+*/
+if (dot) {
+  dot.style.display = 'none';
+}
+
+if (ring) {
+  ring.style.display = 'none';
+}
+
+/*
+  Garante que nenhuma classe do cursor personalizado
+  continue escondendo o cursor normal.
+*/
+document.body.classList.remove(
+  'cursor-ready',
+  'cursor-hover',
+  'cursor-hide'
+);
 
 /* ─── MAGNETIC BUTTONS ─────────────────────── */
 [data-magnetic]{transition:transform .35s var(--ease-out)}
