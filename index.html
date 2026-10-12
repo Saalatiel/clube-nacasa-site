@@ -1028,7 +1028,7 @@ footer{
   <div class="hero-overlay"></div>
 
   <div class="hero-glass-panel r tilt-glass" id="heroGlass">
-    <div class="hero-label">CONSULTORIA DE DECORAÇÃO ONLINE · CLUBE NACASA</div>
+    <div class="hero-label">ASSESSORIA DE DECORAÇÃO ONLINE · CLUBE NACASA</div>
 
     <h1 class="hero-h1 r">
       Qualquer pessoa consegue decorar a própria casa <em>fazendo parte do clube</em>
@@ -1510,37 +1510,6 @@ const onParallax = () => {
 window.addEventListener('scroll', onParallax, { passive:true });
 onParallax();
 
-/* ─── CUSTOM CURSOR ──────────────────────── */
-const dot  = document.getElementById('cursorDot');
-const ring = document.getElementById('cursorRing');
-let mx = innerWidth/2, my = innerHeight/2;
-let rx = mx, ry = my;
-const supportsHover = matchMedia('(hover:hover) and (pointer:fine)').matches;
-if (supportsHover) {
-  let cursorReady = false;
-  document.addEventListener('mousemove', e => {
-    mx = e.clientX; my = e.clientY;
-    dot.style.transform = `translate(${mx}px, ${my}px) translate(-50%,-50%)`;
-    if (!cursorReady) {
-      cursorReady = true;
-      document.body.classList.add('cursor-ready');
-    }
-  });
-  const tick = () => {
-    rx += (mx - rx) * 0.18;
-    ry += (my - ry) * 0.18;
-    ring.style.transform = `translate(${rx}px, ${ry}px) translate(-50%,-50%)`;
-    requestAnimationFrame(tick);
-  };
-  tick();
-  const hoverables = document.querySelectorAll('a, button, .pq-img-wrap, .ci, .bc, .fc, .fund-photo-panel, .sc-stat, .hs-item, .fi, [data-magnetic]');
-  hoverables.forEach(el => {
-    el.addEventListener('mouseenter', () => document.body.classList.add('cursor-hover'));
-    el.addEventListener('mouseleave', () => document.body.classList.remove('cursor-hover'));
-  });
-  document.addEventListener('mouseleave', () => document.body.classList.add('cursor-hide'));
-  document.addEventListener('mouseenter', () => document.body.classList.remove('cursor-hide'));
-}
 
 /* ─── MAGNETIC BUTTONS ────────────────────── */
 if (supportsHover) {
@@ -1769,4 +1738,3 @@ document.querySelectorAll('[data-compare]').forEach(box => {
 </script>
 </body>
 </html>
-
