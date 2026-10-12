@@ -920,6 +920,10 @@ footer{
 const dot = document.getElementById('cursorDot');
 const ring = document.getElementById('cursorRing');
 
+/* Mantém esta variável porque outros efeitos do site usam ela */
+const supportsHover = matchMedia('(hover:hover) and (pointer:fine)').matches;
+
+/* Esconde apenas os elementos do cursor personalizado */
 if (dot) {
   dot.style.display = 'none';
 }
@@ -928,20 +932,22 @@ if (ring) {
   ring.style.display = 'none';
 }
 
+/* Remove as classes usadas pelo cursor personalizado */
 document.body.classList.remove(
   'cursor-ready',
   'cursor-hover',
   'cursor-hide'
 );
 
+/* Volta para o cursor normal do navegador */
 document.body.style.cursor = 'auto';
 
+/* Mãozinha nos elementos clicáveis */
 document.querySelectorAll(
   'a, button, [role="button"], [data-magnetic]'
 ).forEach(el => {
   el.style.cursor = 'pointer';
 });
-
 /* ─── MAGNETIC BUTTONS ─────────────────────── */
 [data-magnetic]{transition:transform .35s var(--ease-out)}
 
